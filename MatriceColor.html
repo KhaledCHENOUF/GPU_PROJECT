@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Matrice Color</title>
+  <style type="text/css">
+      canvas { position: relative;top:-800px; right:-50px;  }
+    </style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css"> 
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+   </script>
+</head>                                
+<body>     
+  
+  <div class="container-contact100">
+    <div class="wrap-contact100"> 
+
+      <form class="contact100-form validate-form">                                  
+        <span class="contact100-form-title">
+              Color Dégradé
+        </span>
+                                                                               
+        <fieldset>                                    
+        <div class="wrap-input100 validate-input">                                             
+        <label class="label-input100" for="field1"><span>Size Matrice <span class="required">*</span></span><input type="text" placeholder="ex: 750 "  class="input100" id="size" />
+        <span class="focus-input100"></span>             
+        </label>                                               
+
+        </div>                    
+        <div class="wrap-input100">             
+              <div class="label-input100">Form Matrice</div>
+              <div>
+                <select class="js-select2" name="type" id="type">
+                   <option>Verticale</option>
+                  <option>Horizontale</option>
+                  <option>Diagonale</option>
+
+                </select>
+                
+                <div class="dropDownSelect2"></div>
+              </div>
+              <span class="focus-input100"></span>
+        </div>   
+        
+        <div class="wrap-input100">             
+              <div class="label-input100">Color matrice</div>
+              <div>                                          
+                <select class="js-select2" name="couleur" id="couleur">
+                  <option>Rouge</option>
+                  <option>Vert</option>
+                  <option>Mauve</option>
+                  
+                </select>
+                <div class="dropDownSelect2"></div>
+              </div>          
+              <span class="focus-input100"></span>
+        </div>
+
+        <div class="wrap-input100">             
+              <div class="label-input100">Speed Dégradé</div>
+              <div>
+                <select class="js-select2" name="type" id="speed">
+                  <option>Lent</option>
+                  <option>Vite</option>
+
+                </select>
+                
+                <div class="dropDownSelect2"></div>
+              </div>
+              <span class="focus-input100"></span>
+        </div> 
+        
+                                                                
+        <div class="container-contact100-form-btn">                    
+              
+          <input align class="btn btn-outline-warning btn-lg btn-block" type="button" value="start" onclick="start()" />
+          <input align class="btn btn-outline-danger btn-lg btn-block" type="button" value="effacer" onclick="CanvasDelete()" />
+        </div>
+        </fieldset>
+      </form>                       
+      <div class="contact100-more flex-col-c-m" >                 
+                                               
+        <h2 style="position: relative;top: -420px;color: #FBC00A;line-height: 1.2;font-variant: small-caps;
+  		font-size: 50px;display: block;background-color: #8D9491;">Result Matrice</h2>
+      </div>
+
+      
+    </div>
+  </div>        
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+	<script>
+		$(".js-select2").each(function(){
+			$(this).select2({
+				minimumResultsForSearch: 20,
+				dropdownParent: $(this).next('.dropDownSelect2')
+			});
+		})
+		$(".js-select2").each(function(){
+			$(this).on('select2:open', function (e){
+				$(this).parent().next().addClass('eff-focus-selection');
+			});
+		});
+		$(".js-select2").each(function(){
+			$(this).on('select2:close', function (e){
+				$(this).parent().next().removeClass('eff-focus-selection');
+			});
+		});                     
+                    
+	</script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}            
+	  gtag('js', new Date());      
+
+	  gtag('config', 'UA-23581568-13');
+	</script>
+</body>
+
+
+<!--------- la bibliotheque GPU -->
+
+<script src="js/gpu-browser.min.js"></script>   
+<script>           
+  
+  // dessinner Matrice  
+  function start() {
+  
+     // Create GPU
+     const gpu = new GPU();
+
+     // Recuperer attributs 
+     const MinimumSize = 10;     
+     //max taille
+     let MaximumSize = document.getElementById("size").value;   
+     // type changement                
+     let Form = document.getElementById("type").value;
+     // vitesse dégradé
+     let speed = document.getElementById("speed").value;
+     // couleur choisie
+     let Color= document.getElementById("couleur").value;                                                     
+     
+     // Create Kernel Fonction
+     const kernel = gpu.createKernel(function(a, b, d) {
+    	if(a== 0 && b==0){ //   vertical  / rouge 
+        this.color(
+        (d * (this.thread.y * 2 * this.thread.y)) /900,    
+        (d * (this.thread.y * this.thread.y)) / (300 * 50),
+        (d * (this.thread.y + this.thread.y)) / 600 *4, 1);
+	     }
+        if (a == 0 && b== 1) {  // vertical / vert    
+     		this.color(
+        (d * (this.thread.y * this.thread.y)) / (300 * 50),
+        (d * (this.thread.y * 2 * this.thread.y)) / 900,
+        (d * (this.thread.y + this.thread.y)) / 600 *4, 1);
+        }
+        if (a == 0 && b== 2) {  // virtecal / Mauve
+     		this.color(
+        (d * (this.thread.y + this.thread.y)) / 1023*10,
+        (d * (this.thread.y * this.thread.y)) / (1022 * 30),
+        (d * (this.thread.y * 2 * this.thread.y)) / (1023 * 5), 1);
+        }
+         if(a== 1 && b==0){ //   Horizontal  / rouge 
+    			this.color(
+        (d * (this.thread.x * 2 * this.thread.x)) / 900,
+        (d * (this.thread.x * this.thread.x)) / (300 * 50),
+        (d * (this.thread.x + this.thread.x)) / 600 *4, 1);
+        }
+        if (a == 1 && b== 1) {  // Horizontal / vert 
+     			this.color(
+        (d * (this.thread.x * this.thread.x)) / (300 * 50),
+        (d * (this.thread.x * 2 * this.thread.x)) / 900,
+        (d * (this.thread.x + this.thread.x)) / 600 *4, 1);
+        }
+        if (a == 1 && b== 2) {  // Horizontal / Mauve
+     			this.color(
+        (d * (this.thread.x + this.thread.x)) / 1023*10,
+        (d * (this.thread.x * this.thread.x)) / (1022 * 30),
+        (d * (this.thread.x * 2 * this.thread.x)) / (1023 * 5), 1);
+        }
+ 		if(a== 2 && b==0){ //   diagonale  / rouge 
+    		this.color(
+        (d * (this.thread.y * 2 * this.thread.x)) / 900,
+        (d * (this.thread.y * this.thread.x)) / (300 * 50),
+        (d * (this.thread.y + this.thread.x)) / 600 *4, 1);
+	     }
+        if (a == 2 && b== 1) {  // diagonale / vert 
+     		this.color(
+        (d * (this.thread.y * this.thread.x)) / (300 * 50),
+        (d * (this.thread.y * 2 * this.thread.x)) / 900,
+        (d * (this.thread.y + this.thread.x)) / 600 *4, 1);
+        }
+        if (a == 2 && b== 2) {  // diagonale / Mauve
+     		 this.color(
+       	(d * (this.thread.y + this.thread.x)) / 1023*10,
+    	(d * (this.thread.y * this.thread.x)) / (1022 * 30),
+       	(d * (this.thread.y * 2 * this.thread.x)) / (1023*5 ), 1);
+        }
+
+        },  
+        {
+    	   graphical: true,
+    	   dynamicOutput: true,
+    	   precision: 'unsigned'
+        }
+   );
+ 	document.body.appendChild(kernel.canvas);
+
+ //Test valeur de  form
+
+	let param1 = 0;
+   	 switch (Form) {
+     	case 'Verticale':
+       		 // 0 pour vertical 
+       		 param1 = 0;
+       	break;
+     	case 'Horizontale':
+       		// 1 pour horizontal
+       		param1 = 1;
+       	break;
+    	default:  
+    		// 2 pour diagonal
+    		param1 = 2;
+	}
+
+ //Test valeur de  couleur   
+    let param2 = 0;
+    switch (Color) {
+   		case 'Rouge':
+       		 // 0 pour rouge 
+        	param2 = 0;
+       	break;
+     	case 'Vert':
+       		// 1 pour vert
+       		param2 = 1;
+        break;
+    	default:// 2 pour Mauve
+       		param2 = 2;
+ 	}
+
+  //Test valeur de  speed dégradé  
+    let decal = 0;
+    switch (speed) {
+   		case 'Lent':
+       		 // Lent
+        	decal = 0.00008;
+       	break;
+    	default:
+    		// Vite
+       		decal = 0.001;
+ 	}
+
+   //limiter la taille de la matrice  {580,780} en px 
+ 	 if(MaximumSize< 580)
+    {
+          MaximumSize = 580 ;
+    }else if(MaximumSize > 750){
+          MaximumSize = 750 ;
+    }
+   
+  // Fonction appelle le kernel
+    let iterator = MinimumSize;
+    let param3 = 0;
+
+  	function Task() {
+    	if (iterator < MaximumSize) {
+      		kernel.setOutput([++iterator,iterator]);
+        	kernel(param1,param2,param3);
+        	param3 = param3 + decal;
+        	requestAnimationFrame(Task);
+    	} 
+  	}
+  	requestAnimationFrame(Task);
+}
+ // effacer matrice 
+ function CanvasDelete() {
+ 	$('canvas').remove();
+  }
+</script>
+</html>
+         
